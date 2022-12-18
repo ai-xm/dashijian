@@ -1,4 +1,5 @@
 $(function () {
+    // 调用获取用户信息的函数
     getUserInfo()
 
     // 用户点击退出
@@ -28,9 +29,8 @@ function getUserInfo () {
         // 请求成功的回调函数
         success: function (res) {
             if (res.status !== 0) {
-                return layer.msg(res.message)
+                return layer.msg('获取用户信息失败！')
             }
-            console.log(res)
             // 渲染用户的头像, 注意一定要传参数进去
             renderAvatar(res.data)
         }
@@ -43,12 +43,16 @@ function renderAvatar (user) {
     // 获取 用户的名称
     let name = user.nickname || user.username
     // 设置文本
-    $('#welcome').html(`欢迎${name}`)
+    $('#welcome').html('欢迎&nbsp;&nbsp;' + name)
+    // console.log(user.user_pic)
     // 按需渲染用户的头像
     if (user.user_pic !== null) {
         // 如果用户有头像，就渲染用户图片头像
-        $('.layui-nav-img').attr('scr', user.user_pic).show()
-        $('.text-avatar').hide()
+        $('.layui-nav-img')
+        .attr('src', user.user_pic)
+        .show()
+        $('.text-avatar')
+        .hide()
     } else {
         // 用户没用图片头像，渲染成文本头像
         $('.layui-nav-img').hide()
