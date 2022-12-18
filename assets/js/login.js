@@ -72,7 +72,7 @@ $(function () {
                 // 将登录成功得到的token字符串，保存到localStorage里面，方便后面使用
                 localStorage.setItem('token', res.token)
                 // 跳转到主页
-                location.href = '/index.html'
+                location.href = './index.html'
 
             }
         })
